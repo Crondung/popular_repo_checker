@@ -2,6 +2,29 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-.box {
-  border: 1px solid red;
+#maincontainer {
+  position: relative;
+}
+
+#card {
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  width: 800px;
+  height: 400px;
+}
+
+#front {
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#back {
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  width: 100%;
+  height: 100%;
 }
