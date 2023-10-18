@@ -35,25 +35,23 @@
               id="repoName"
               name="repoName"
               placeholder="Geben Sie den Repository-Namen ein"
-              class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
+              class="w-80 px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
             />
           </div>
           <button
             id="submitButton"
             type="submit"
-            class="w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+            class="w-80 py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
           >
             Suchen
           </button>
         </form>
       </div>
       <div id="back">
-        <h1 class="text-2xl font-semibold text-center mb-5 text-gray-900">
-          Repository Name
+        <h1 id="repo-name" class="text-2xl font-semibold text-center mb-5 text-gray-900">
         </h1>
-        <div>Author</div>
-        <div>Stars</div>
-        <div>Forks</div>
+        <div id="author-name"></div>
+        <div id="is-popular"></div>
         <button
             id="backButton"
             type="submit"
