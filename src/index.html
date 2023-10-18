@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Repository Suche</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body
+    class="bg-gray-100 min-h-screen font-sans flex justify-center items-center md:items-start md:pt-20"
+  >
+    <div
+      class="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md md:max-w-md md:h-auto md:rounded-lg"
+    >
+      <h1 class="text-2xl font-semibold text-center mb-5 text-gray-900">
+        GitHub Repository Suche
+      </h1>
+
+      <form id="repoSearchForm">
+        <div class="mb-4">
+          <label
+            for="repoName"
+            class="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Repository Name:
+          </label>
+          <input
+            type="text"
+            id="repoName"
+            name="repoName"
+            placeholder="Geben Sie den Repository-Namen ein"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+        >
+          Suchen
+        </button>
+      </form>
+    </div>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>
