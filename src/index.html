@@ -10,42 +10,43 @@
   <body>
     <div
       id="maincontainer"
-      class="bg-gray-200 min-h-screen font-sans flex justify-center items-center md:items-start"
+      class="bg-gray-200 min-h-screen font-sans flex justify-center items-center"
     >
       <div
         id="card"
-        class="m-auto bg-white w-5/6 h-5/6 rounded flex justify-center items-center"
+        class="m-auto bg-white w-5/6 h-5/6 rounded flex justify-center items-center md:w-3/5 md:h-1/4"
       >
-        <div id="front" class="flex flex-col justify-start items-center">
-          <img src="" alt="GitHub Icon" class="mb-12 w-1/4 h-fit rounded" />
-          <h1 class="text-2xl font-semibold text-center mb-5 text-gray-900">
+        <div id="front" class="flex flex-col justify-between items-center">
+          <img src="" alt="GitHub Icon" class="w-1/4 h-fit rounded" />
+          <h1 class="text-2xl font-semibold text-center text-gray-900">
             GitHub Repository Suche
           </h1>
 
+          <h2 class="text-center">
+            Erhalte erweiterte Informationen wie den Namen des Authors und die
+            Popularität eines beliebigen öffentlichen GitHub Repository!
+          </h2>
           <form id="repoSearchForm">
-            <div class="mb-4 mt-12">
-              <label
-                for="repoName"
-                class="block text-gray-700 text-sm font-bold mb-2"
-              >
-                Repository Name:
-              </label>
-              <input
-                type="text"
-                id="repoName"
-                name="repoName"
-                placeholder="Geben Sie den Repository-Namen ein"
-                class="min-w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-              />
-            </div>
-            <button
-              id="submitButton"
-              type="submit"
-              class="mt-8 min-w-full py-2 px-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+            <label
+              for="repoName"
+              class="block text-gray-700 text-sm font-bold mb-2"
             >
-              Suchen
-            </button>
+              Repository Name:
+            </label>
+            <input
+              type="text"
+              id="repoName"
+              name="repoName"
+              placeholder="Geben Sie den Repository-Namen ein"
+              class="min-w-full w-80 px-4 py-4 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
+            />
           </form>
+          <button
+            id="submitButton"
+            class="min-w-full py-4 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+          >
+            Suchen
+          </button>
         </div>
         <div id="back" class="flex flex-col justify-center items-center">
           <h1
