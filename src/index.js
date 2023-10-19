@@ -38,8 +38,6 @@ async function findRepo(repoName) {
       url: repo.url,
       isPopular: repo.stargazers_count + repo.forks * 2 >= 500,
     };
-
-    console.log(repoInformation);
     return repoInformation;
   } catch (error) {
     console.error(error);
@@ -49,6 +47,9 @@ async function findRepo(repoName) {
 function displayRepoInformation(repoInformation) {
   const author = document.getElementById('author-name');
   author.innerHTML = repoInformation.author;
+
+  const authorAvatar = document.getElementById('author-avatar');
+  authorAvatar.setAttribute('src', repoInformation.authorAvatar);
 
   const repoName = document.getElementById('repo-name');
   repoName.innerHTML = repoInformation.name;

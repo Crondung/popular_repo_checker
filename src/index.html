@@ -7,61 +7,65 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
 
-  <body></body>
+  <body>
     <div
       id="maincontainer"
       class="bg-gray-100 min-h-screen font-sans flex justify-center items-center md:items-start md:pt-20"
     >
-    <div
-      id="card"
-      class="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md md:max-w-md md:h-auto md:rounded-lg"
-    >
-      <div id="front">
+      <div
+        id="card"
+        class="p-6 m-auto bg-white rounded-md shadow-md md:h-auto md:rounded-lg"
+      >
+        <div id="front">
+          <h1 class="text-2xl font-semibold text-center mb-5 text-gray-900">
+            GitHub Repository Suche
+          </h1>
 
-        <h1 class="text-2xl font-semibold text-center mb-5 text-gray-900">
-          GitHub Repository Suche
-        </h1>
-
-        <form id="repoSearchForm">
-          <div class="mb-4">
-            <label
-              for="repoName"
-              class="block text-gray-700 text-sm font-bold mb-2"
+          <form id="repoSearchForm">
+            <div class="mb-4">
+              <label
+                for="repoName"
+                class="block text-gray-700 text-sm font-bold mb-2"
+              >
+                Repository Name:
+              </label>
+              <input
+                type="text"
+                id="repoName"
+                name="repoName"
+                placeholder="Geben Sie den Repository-Namen ein"
+                class="w-80 px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+            <button
+              id="submitButton"
+              type="submit"
+              class="w-80 py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
             >
-              Repository Name:
-            </label>
-            <input
-              type="text"
-              id="repoName"
-              name="repoName"
-              placeholder="Geben Sie den Repository-Namen ein"
-              class="w-80 px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
-            />
+              Suchen
+            </button>
+          </form>
+        </div>
+        <div id="back">
+          <h1
+            id="repo-name"
+            class="text-2xl font-semibold text-center mb-5 text-gray-900"
+          ></h1>
+          <div id="author-container" class="flex w-80">
+            <img id="author-avatar" class="rounded w-20" src="" alt="avatar" />
+            <div id="author-name"></div>
           </div>
+          <div id="is-popular"></div>
           <button
-            id="submitButton"
+            id="backButton"
             type="submit"
             class="w-80 py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
           >
-            Suchen
+            Zurück
           </button>
-        </form>
-      </div>
-      <div id="back">
-        <h1 id="repo-name" class="text-2xl font-semibold text-center mb-5 text-gray-900">
-        </h1>
-        <div id="author-name"></div>
-        <div id="is-popular"></div>
-        <button
-            id="backButton"
-            type="submit"
-            class="w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
-          >
-        Zurück
-        </button>
+        </div>
       </div>
     </div>
-  </div>
 
     <script src="bundle.js"></script>
   </body>
