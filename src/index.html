@@ -10,19 +10,20 @@
   <body>
     <div
       id="maincontainer"
-      class="bg-gray-100 min-h-screen font-sans flex justify-center items-center md:items-start md:pt-20"
+      class="bg-gray-200 min-h-screen font-sans flex justify-center items-center md:items-start"
     >
       <div
         id="card"
-        class="p-6 m-auto bg-white rounded-md shadow-md md:h-auto md:rounded-lg"
+        class="m-auto bg-white w-5/6 h-5/6 rounded flex justify-center items-center"
       >
-        <div id="front">
+        <div id="front" class="flex flex-col justify-start items-center">
+          <img src="" alt="GitHub Icon" class="mb-12 w-1/4 h-fit rounded" />
           <h1 class="text-2xl font-semibold text-center mb-5 text-gray-900">
             GitHub Repository Suche
           </h1>
 
           <form id="repoSearchForm">
-            <div class="mb-4">
+            <div class="mb-4 mt-12">
               <label
                 for="repoName"
                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -34,19 +35,19 @@
                 id="repoName"
                 name="repoName"
                 placeholder="Geben Sie den Repository-Namen ein"
-                class="w-80 px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
+                class="min-w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
               />
             </div>
             <button
               id="submitButton"
               type="submit"
-              class="w-80 py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+              class="mt-8 min-w-full py-2 px-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
             >
               Suchen
             </button>
           </form>
         </div>
-        <div id="back">
+        <div id="back" class="flex flex-col justify-center items-center">
           <h1
             id="repo-name"
             class="text-2xl font-semibold text-center mb-5 text-gray-900"
