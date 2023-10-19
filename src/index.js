@@ -2,14 +2,19 @@ import { Octokit } from '@octokit/rest';
 import './styles.scss';
 
 //add event listener for the submitButton of the form
-document.getElementById('submitButton').addEventListener('click', (event) => {
-  const repoNameValue = document.getElementById('repoName').value;
-  const repo = findRepo(repoNameValue).then((repo) =>
-    displayRepoInformation(repo)
-  );
+document
+  .getElementById('submitButton')
+  .addEventListener('click', async (event) => {
+    const repoNameValue = document.getElementById('repoName').value;
+    try {
+      const repo = await findRepo(repoNameValue);
+      displayRepoInformation(repo);
+    } catch (error) {
+      console.error(error);
+    }
 
-  turnCard(event, 180);
-});
+    turnCard(event, 180);
+  });
 
 //add event listener for the return button
 document
@@ -45,9 +50,13 @@ export async function findRepo(repoName) {
       q: repoName,
       per_page: 1,
     });
+    console.log(result);
     if (result.data.incomplete_results === true) {
       //TODO error handling
       console.error('incomplete results');
+    }
+    if (result.data.items[0] === undefined) {
+      throw new Error(`Not Found: Repository with name ${repoName}`);
     }
     const repo = result.data.items[0];
     const repoInformation = {
@@ -60,6 +69,7 @@ export async function findRepo(repoName) {
     return repoInformation;
   } catch (error) {
     console.error(error);
+    throw new Error('Could not get results');
   }
 }
 
