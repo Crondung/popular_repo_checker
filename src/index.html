@@ -14,10 +14,10 @@
     >
       <div
         id="card"
-        class="m-auto bg-white w-5/6 h-5/6 rounded flex justify-center items-center md:w-3/5 md:h-1/4"
+        class="m-auto bg-white w-5/6 h-5/6 rounded flex justify-center items-center md:w-3/5 md:h-1/2"
       >
         <div id="front" class="flex flex-col justify-between items-center">
-          <a href="https://github.com" class="w-1/4 h-fit">
+          <a href="https://github.com" class="w-1/4 h-fit md:w-1/6">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
               alt="GitHub Icon"
@@ -32,7 +32,7 @@
             Erhalte erweiterte Informationen wie den Namen des Authors und die
             Popularität eines beliebigen öffentlichen GitHub Repository!
           </h2>
-          <form id="repoSearchForm">
+          <form id="repoSearchForm" class="min-w-full">
             <label
               for="repoName"
               class="block text-gray-700 text-sm font-bold mb-2"
@@ -44,30 +44,36 @@
               id="repoName"
               name="repoName"
               placeholder="Geben Sie den Repository-Namen ein"
-              class="min-w-full w-80 px-4 py-4 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
+              class="min-w-full px-4 py-4 md:px-2 md:py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500"
             />
           </form>
           <button
             id="submitButton"
-            class="min-w-full py-4 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+            class="min-w-full py-4 px-4 md:px-2 md:py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
           >
             Suchen
           </button>
         </div>
-        <div id="back" class="flex flex-col justify-center items-center">
+        <div id="back" class="flex flex-col justify-between items-center">
+          <a href="https://github.com" class="w-1/4 h-fit md:w-1/6">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
+              alt="Author Icon"
+              class="rounded"
+            />
+          </a>
           <h1
             id="repo-name"
             class="text-2xl font-semibold text-center mb-5 text-gray-900"
-          ></h1>
-          <div id="author-container" class="flex w-80">
-            <img id="author-avatar" class="rounded w-20" src="" alt="avatar" />
-            <div id="author-name"></div>
-          </div>
+          >
+            Repository
+          </h1>
+          <h2 id="auhor-name" class="text-center">Author</h2>
           <div id="is-popular"></div>
           <button
             id="backButton"
             type="submit"
-            class="w-80 py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+            class="min-w-full py-4 px-4 md:px-2 md:py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
           >
             Zurück
           </button>
