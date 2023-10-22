@@ -11,7 +11,8 @@ export function initEventListeners() {
     .addEventListener('click', async (event) => {
       const repoNameValue = document.getElementById('repoName').value;
       try {
-        const repo = await findRepo(repoNameValue);
+        const octokit = new Octokit();
+        const repo = await findRepo(repoNameValue, octokit);
         displayRepoInformation(repo);
       } catch (error) {
         console.error(error);
@@ -45,20 +46,19 @@ export function turnCard(event, deg) {
  * uses the Octokit package to retrieve repository informations
  *
  * @param {string} repoName
+ * @param {Octokit} octokit Octokit instance to request the information with
  * @returns {Object} repoInfos with all needed fields
  */
-export async function findRepo(repoName) {
-  const octokit = new Octokit();
+export async function findRepo(repoName, octokit) {
   try {
     const result = await octokit.rest.search.repos({
       q: repoName,
       per_page: 1,
     });
-    console.log(result);
-    if (result.data.incomplete_results === true) {
+    /* if (result.data.incomplete_results === true) {
       //TODO error handling
       console.error('incomplete results');
-    }
+    } */
     if (result.data.items[0] === undefined) {
       throw new Error(`Not Found: Repository with name ${repoName}`);
     }
@@ -92,4 +92,24 @@ export function displayRepoInformation(repoInformation) {
 
   const repoName = document.getElementById('repo-name');
   repoName.innerHTML = repoInformation.name;
+}
+
+/**
+ * Checks if repoName is a valid repository name
+ *
+ * @param {string} repoName
+ * @returns {boolean} true if repoName is a valid repository name, false otherwise
+ */
+export function isValidRepoName(repoName) {
+  if (!repoName) return false;
+
+  return true;
+}
+
+export function getBacksideCardElements() {
+  return {
+    author: document.getElementById('author-name'),
+    authorAvatar: document.getElementById('author-avatar'),
+    repoName: document.getElementById('repo-name'),
+  };
 }
