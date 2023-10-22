@@ -57,10 +57,6 @@ export async function findRepo(repoName, octokit) {
       q: repoName,
       per_page: 1,
     });
-    /* if (result.data.incomplete_results === true) {
-      //TODO error handling
-      console.error('incomplete results');
-    } */
     if (result.data.items[0] === undefined) {
       throw new Error(`Not Found: Repository with name ${repoName}`);
     }
@@ -76,7 +72,6 @@ export async function findRepo(repoName, octokit) {
     };
     return repoInformation;
   } catch (error) {
-    console.error(error);
     throw new Error('Could not get results');
   }
 }
