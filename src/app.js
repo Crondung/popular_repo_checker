@@ -13,7 +13,8 @@ export function initEventListeners() {
       try {
         const octokit = new Octokit();
         const repo = await findRepo(repoNameValue, octokit);
-        displayRepoInformation(repo);
+        const backsideCardElements = getBacksideCardElements();
+        displayRepoInformation(backsideCardElements, repo);
         const score = calculateScore(repo.stars, repo.forks);
         displayPopularity(score);
         turnCard(event, 180);
@@ -71,7 +72,6 @@ export async function findRepo(repoName, octokit) {
       url: repo.html_url,
       stars: repo.stargazers_count,
       forks: repo.forks,
-      isPopular: repo.stargazers_count + repo.forks * 2 >= 500,
     };
     return repoInformation;
   } catch (error) {
@@ -94,10 +94,10 @@ export function calculateScore(stars, forks) {
  * Updates the backside of the card
  * to display the repository informations
  *
- * @param {Object} repoInformation
+ * @param {Object} backsideCardElements HTML Elements to update
+ * @param {Object} repoInformation informations of a repository to display
  */
-export function displayRepoInformation(repoInformation) {
-  const backsideCardElements = getBacksideCardElements();
+export function displayRepoInformation(backsideCardElements, repoInformation) {
   backsideCardElements.authorAvatar.src = repoInformation.authorAvatar;
   backsideCardElements.authorAnchor.href = repoInformation.url;
   backsideCardElements.repoName.innerHTML = `repository: ${repoInformation.name}`;
@@ -182,7 +182,7 @@ export function displayPopularity(score) {
     text =
       '<b>A popular repository appeared!</b> Share this repository, to make it even more popular.';
   }
-  popularIcon.setAttribute('fill', '#f97316');
+  popularIcon.setAttribute('fill', iconColor);
   popularityText.innerHTML = text;
 }
 
