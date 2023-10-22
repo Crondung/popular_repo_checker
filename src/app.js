@@ -23,6 +23,9 @@ export function initEventListeners() {
     });
 
   document.getElementById('backButton').addEventListener('click', (event) => {
+    // reset input
+    document.getElementById('repoName').value = '';
+
     turnCard(event, 0);
     resetBacksideCardElemets();
   });
@@ -76,6 +79,13 @@ export async function findRepo(repoName, octokit) {
   }
 }
 
+/**
+ * Calculates a repositories score
+ *
+ * @param {number} stars
+ * @param {number} forks
+ * @returns {number} score of the repository
+ */
 export function calculateScore(stars, forks) {
   return stars + forks * 2;
 }
@@ -108,6 +118,12 @@ export function isValidRepoName(repoName) {
   return true;
 }
 
+/**
+ * wrapper function which returns an object
+ * with HTML-Elements of the cards backside as values
+ *
+ * @returns
+ */
 export function getBacksideCardElements() {
   const elements = {
     author: document.getElementById('author-name'),
@@ -120,6 +136,9 @@ export function getBacksideCardElements() {
   return elements;
 }
 
+/**
+ * helper function which resets all backside cards elements
+ */
 export function resetBacksideCardElemets() {
   const backsideCardElements = getBacksideCardElements();
   backsideCardElements.authorAvatar.src =
@@ -131,6 +150,15 @@ export function resetBacksideCardElemets() {
   backsideCardElements.forks.innerHTML = 'forks:';
 }
 
+/**
+ * display populariy content, consisting of an icon and text, based on a score
+ * following score ranges will produce different content:
+ *  1. score < 250
+ *  2. 250 <= score < 500
+ *  3. score >= 500
+ *
+ * @param {number} score
+ */
 export function displayPopularity(score) {
   const colors = {
     unpopular: '#fca5a5',
@@ -158,16 +186,17 @@ export function displayPopularity(score) {
   popularityText.innerHTML = text;
 }
 
+/**
+ * error handler for errors which can occur when searching for a github repository
+ *
+ * @param {string} repoName
+ */
 function handleError(repoName) {
   const errorText = `There was an error searching for the repository with the name ${repoName}. Please try to enter a valid repository name.`;
   alert(errorText);
-
   const input = document.getElementById('repoName');
-
   const originalStyle = input.style;
-
   input.style.border = '1px solid red';
-
   input.addEventListener(
     'click',
     () => {
