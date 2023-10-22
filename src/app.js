@@ -16,11 +16,10 @@ export function initEventListeners() {
         displayRepoInformation(repo);
         const score = calculateScore(repo.stars, repo.forks);
         displayPopularity(score);
+        turnCard(event, 180);
       } catch (error) {
-        console.error(error);
+        handleError(repoNameValue);
       }
-
-      turnCard(event, 180);
     });
 
   document.getElementById('backButton').addEventListener('click', (event) => {
@@ -130,6 +129,7 @@ export function resetBacksideCardElemets() {
   const backsideCardElements = getBacksideCardElements();
   backsideCardElements.authorAvatar.src =
     'https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg';
+  backsideCardElements.authorAnchor.href = 'https://github.com';
   backsideCardElements.repoName.innerHTML = 'repository:';
   backsideCardElements.author.innerHTML = 'author:';
   backsideCardElements.stars.innerHTML = 'stars:';
@@ -161,4 +161,23 @@ export function displayPopularity(score) {
   }
   popularIcon.setAttribute('fill', '#f97316');
   popularityText.innerHTML = text;
+}
+
+function handleError(repoName) {
+  const errorText = `There was an error searching for the repository with the name ${repoName}. Please try to enter a valid repository name.`;
+  alert(errorText);
+
+  const input = document.getElementById('repoName');
+
+  const originalStyle = input.style;
+
+  input.style.border = '1px solid red';
+
+  input.addEventListener(
+    'click',
+    () => {
+      input.style = originalStyle;
+    },
+    { once: true }
+  );
 }
