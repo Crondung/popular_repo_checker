@@ -70,7 +70,7 @@ export async function findRepo(repoName, octokit) {
       name: repo.name,
       author: repo.owner.login,
       authorAvatar: repo.owner.avatar_url,
-      url: repo.url,
+      url: repo.html_url,
       stars: repo.stargazers_count,
       forks: repo.forks,
       isPopular: repo.stargazers_count + repo.forks * 2 >= 500,
@@ -95,6 +95,7 @@ export function calculateScore(stars, forks) {
 export function displayRepoInformation(repoInformation) {
   const backsideCardElements = getBacksideCardElements();
   backsideCardElements.authorAvatar.src = repoInformation.authorAvatar;
+  backsideCardElements.authorAnchor.href = repoInformation.url;
   backsideCardElements.repoName.innerHTML = `repository: ${repoInformation.name}`;
   backsideCardElements.author.innerHTML = `author: ${repoInformation.author}`;
   backsideCardElements.stars.innerHTML = `stars: ${repoInformation.stars}`;
@@ -117,6 +118,7 @@ export function getBacksideCardElements() {
   const elements = {
     author: document.getElementById('author-name'),
     authorAvatar: document.getElementById('author-avatar'),
+    authorAnchor: document.getElementById('author-anchor'),
     repoName: document.getElementById('repo-name'),
     stars: document.getElementById('stars'),
     forks: document.getElementById('forks'),
