@@ -57,18 +57,20 @@
         <div id="back" class="flex flex-col justify-between items-center">
           <a href="https://github.com" class="w-1/4 h-fit md:w-1/6">
             <img
+              id="author-avatar"
               src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
               alt="Author Icon"
               class="rounded"
             />
           </a>
-          <h1
-            id="repo-name"
-            class="text-2xl font-semibold text-center mb-5 text-gray-900"
+          <div
+            class="rounded-md bg-gray-700 text-white font-mono p-4 m-8 w-5/6 min-w-full"
           >
-            Repository
-          </h1>
-          <h2 id="auhor-name" class="text-center">Author</h2>
+            <div id="repo-name">repository:</div>
+            <div id="author-name">author:</div>
+            <div id="stars">stars:</div>
+            <div id="forks">forks:</div>
+          </div>
           <div id="is-popular"></div>
           <button
             id="backButton"

@@ -21,9 +21,10 @@ export function initEventListeners() {
       turnCard(event, 180);
     });
 
-  document
-    .getElementById('backButton')
-    .addEventListener('click', (event) => turnCard(event, 0));
+  document.getElementById('backButton').addEventListener('click', (event) => {
+    turnCard(event, 0);
+    resetBacksideCardElemets();
+  });
 }
 
 /**
@@ -68,6 +69,8 @@ export async function findRepo(repoName, octokit) {
       author: repo.owner.login,
       authorAvatar: repo.owner.avatar_url,
       url: repo.url,
+      stars: repo.stargazers_count,
+      forks: repo.forks,
       isPopular: repo.stargazers_count + repo.forks * 2 >= 500,
     };
     return repoInformation;
@@ -84,14 +87,12 @@ export async function findRepo(repoName, octokit) {
  * @param {Object} repoInformation
  */
 export function displayRepoInformation(repoInformation) {
-  const author = document.getElementById('author-name');
-  author.innerHTML = repoInformation.author;
-
-  const authorAvatar = document.getElementById('author-avatar');
-  authorAvatar.setAttribute('src', repoInformation.authorAvatar);
-
-  const repoName = document.getElementById('repo-name');
-  repoName.innerHTML = repoInformation.name;
+  const backsideCardElements = getBacksideCardElements();
+  backsideCardElements.authorAvatar.src = repoInformation.authorAvatar;
+  backsideCardElements.repoName.innerHTML = `repository: ${repoInformation.name},`;
+  backsideCardElements.author.innerHTML = `author: ${repoInformation.author},`;
+  backsideCardElements.stars.innerHTML = `stars: ${repoInformation.stars},`;
+  backsideCardElements.forks.innerHTML = `forks: ${repoInformation.forks},`;
 }
 
 /**
@@ -107,9 +108,22 @@ export function isValidRepoName(repoName) {
 }
 
 export function getBacksideCardElements() {
-  return {
+  const elements = {
     author: document.getElementById('author-name'),
     authorAvatar: document.getElementById('author-avatar'),
     repoName: document.getElementById('repo-name'),
+    stars: document.getElementById('stars'),
+    forks: document.getElementById('forks'),
   };
+  return elements;
+}
+
+export function resetBacksideCardElemets() {
+  const backsideCardElements = getBacksideCardElements();
+  backsideCardElements.authorAvatar.src =
+    'https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg';
+  backsideCardElements.repoName.innerHTML = 'repository:';
+  backsideCardElements.author.innerHTML = 'author:';
+  backsideCardElements.stars.innerHTML = 'stars:';
+  backsideCardElements.forks.innerHTML = 'forks:';
 }
