@@ -1,4 +1,3 @@
-import { JSDOM } from 'jest-environment-jsdom';
 import {
   turnCard,
   findRepo,
