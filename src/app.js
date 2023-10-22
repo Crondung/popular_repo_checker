@@ -14,6 +14,8 @@ export function initEventListeners() {
         const octokit = new Octokit();
         const repo = await findRepo(repoNameValue, octokit);
         displayRepoInformation(repo);
+        const score = calculateScore(repo.stars, repo.forks);
+        displayPopularity(score);
       } catch (error) {
         console.error(error);
       }
@@ -80,6 +82,10 @@ export async function findRepo(repoName, octokit) {
   }
 }
 
+export function calculateScore(stars, forks) {
+  return stars + forks * 2;
+}
+
 /**
  * Updates the backside of the card
  * to display the repository informations
@@ -89,10 +95,10 @@ export async function findRepo(repoName, octokit) {
 export function displayRepoInformation(repoInformation) {
   const backsideCardElements = getBacksideCardElements();
   backsideCardElements.authorAvatar.src = repoInformation.authorAvatar;
-  backsideCardElements.repoName.innerHTML = `repository: ${repoInformation.name},`;
-  backsideCardElements.author.innerHTML = `author: ${repoInformation.author},`;
-  backsideCardElements.stars.innerHTML = `stars: ${repoInformation.stars},`;
-  backsideCardElements.forks.innerHTML = `forks: ${repoInformation.forks},`;
+  backsideCardElements.repoName.innerHTML = `repository: ${repoInformation.name}`;
+  backsideCardElements.author.innerHTML = `author: ${repoInformation.author}`;
+  backsideCardElements.stars.innerHTML = `stars: ${repoInformation.stars}`;
+  backsideCardElements.forks.innerHTML = `forks: ${repoInformation.forks}`;
 }
 
 /**
@@ -126,4 +132,31 @@ export function resetBacksideCardElemets() {
   backsideCardElements.author.innerHTML = 'author:';
   backsideCardElements.stars.innerHTML = 'stars:';
   backsideCardElements.forks.innerHTML = 'forks:';
+}
+
+export function displayPopularity(score) {
+  const colors = {
+    unpopular: '#fca5a5',
+    mediumPopular: '#fdba74',
+    popular: '#f97316',
+  };
+  const popularIcon = document.getElementById('popular-icon');
+  const popularityText = document.getElementById('popularity-text');
+  let text = '';
+  let iconColor = '';
+  if (score < 250) {
+    iconColor = colors.unpopular;
+    text =
+      '<b>Get it started!</b> Increase this repositories popularity by sharing it.';
+  } else if (score < 500) {
+    iconColor = colors.mediumPopular;
+    text =
+      '<b>Almost there!</b> Gather your final stars to become a popular repository.';
+  } else {
+    iconColor = colors.popular;
+    text =
+      '<b>A popular repository appeared!</b> Share this repository, to make it even more popular.';
+  }
+  popularIcon.setAttribute('fill', '#f97316');
+  popularityText.innerHTML = text;
 }
